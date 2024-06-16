@@ -2,7 +2,7 @@
 
 ## Real-time 3D Target Inference via Biomechanical Simulation (CHI'24)
 
-<img src="figs/simul_dense.gif" width="50%"> <img src="figs/simul_wide.gif" width="50%">
+<img src="figs/simul_dense.gif" width="30%"> <img src="figs/simul_wide.gif" width="30%">
 
 - ### Simulated user with human-like perceptual and motor skills
   - We created a rational agent with human-like perception and motor abilities, trained via reinforcement learning.
@@ -22,7 +22,7 @@
   - [data/study_3a](https://github.com/hsmoon121/amortized-inference-hci/blob/main/data/study_3a) - Raycasting selection trials (Wide target grid) with assistance (N=12)
   - [data/study_3b](https://github.com/hsmoon121/amortized-inference-hci/blob/main/data/study_3b) - Raycasting selection trials (Dense target grid) with assistance (N=20)
 - Key results (Figures) replication
-  - We provide scripts to replicate the key results presented in our paper. The replication plots can be found in the [plots/](https://github.com/hsmoon121/amortized-inference-hci/blob/main/plots) directory.
+  - We provide scripts to replicate the key results presented in our paper. The replication code for plots can be found in the [plots/](https://github.com/hsmoon121/amortized-inference-hci/blob/main/plots) directory.
 - Code for inference model
   - The code for training the inference model is available in this repository.
 - Code for simulator model
@@ -32,8 +32,8 @@
 
 ## Acknowledgements
 
-The biomechanical agent training part of this code utilizes the previous code from Ikkala et al. (UIST'22: 
-Breathing Life Into Biomechanical User Models). 
+The biomechanical agent training part of this code utilizes the previous code from Ikkala et al. (
+Breathing Life Into Biomechanical User Models, UIST'22 paper). 
 
 For more details and citation, please refer to the respective repository: https://github.com/aikkala/user-in-the-box
 
