@@ -18,11 +18,11 @@
 
 - Datasets
   - We provide datasets from user studies conducted on raycasting selection trials. The datasets are as follows:
-  - [data/study_1](https://github.com/hsmoon121/amortized-inference-hci/blob/main/data/study_1) - Raycasting selection trials (N=20)
-  - [data/study_3a](https://github.com/hsmoon121/amortized-inference-hci/blob/main/data/study_3a) - Raycasting selection trials (Wide target grid) with assistance (N=12)
-  - [data/study_3b](https://github.com/hsmoon121/amortized-inference-hci/blob/main/data/study_3b) - Raycasting selection trials (Dense target grid) with assistance (N=20)
+  - [data/study_1](data/study_1) - Raycasting selection trials (N=20)
+  - [data/study_3a](data/study_3a) - Raycasting selection trials (Wide target grid) with assistance (N=12)
+  - [data/study_3b](data/study_3b) - Raycasting selection trials (Dense target grid) with assistance (N=20)
 - Key results (Figures) replication
-  - We provide scripts to replicate the key results presented in our paper. The replication code for plots can be found in the [plots/](https://github.com/hsmoon121/amortized-inference-hci/blob/main/plots) directory.
+  - We provide scripts to replicate the key results presented in our paper. The replication code for plots can be found in the [plots/](plots) directory.
 - Code for inference model
   - The code for training the inference model is available in this repository.
 - Code for simulator model
