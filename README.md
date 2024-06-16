@@ -2,6 +2,8 @@
 
 ## Real-time 3D Target Inference via Biomechanical Simulation (CHI'24)
 
+<img src="figs/simul_dense.gif" width="50%"> <img src="figs/simul_wide.gif" width="50%">
+
 - ### Simulated user with human-like perceptual and motor skills
   - We created a rational agent with human-like perception and motor abilities, trained via reinforcement learning.
   - The simulation adapts to various target configurations and user features.
@@ -12,25 +14,28 @@
 - ### [Paper (Open access)](https://dl.acm.org/doi/10.1145/3613904.3642131)
 - ### [Presentation video (YouTube link)](https://youtu.be/AIL9BGkmlXA?si=sElVnOeKDMSfxG9L)
 
-## Code & Dataset release status
+## Datasets & Code Release Overview
 
-Currently, we provide:
-- Datasets from user studies
+- Datasets
+  - We provide datasets from user studies conducted on raycasting selection trials. The datasets are as follows:
   - [data/study_1](https://github.com/hsmoon121/amortized-inference-hci/blob/main/data/study_1) - Raycasting selection trials (N=20)
   - [data/study_3a](https://github.com/hsmoon121/amortized-inference-hci/blob/main/data/study_3a) - Raycasting selection trials (Wide target grid) with assistance (N=12)
   - [data/study_3b](https://github.com/hsmoon121/amortized-inference-hci/blob/main/data/study_3b) - Raycasting selection trials (Dense target grid) with assistance (N=20)
 - Key results (Figures) replication
-  - [plots/](https://github.com/hsmoon121/amortized-inference-hci/blob/main/plots) - Replication of our key results in the paper
-- Code for training simulator & inference model
-- More tutorial code (to be appear)
+  - We provide scripts to replicate the key results presented in our paper. The replication plots can be found in the [plots/](https://github.com/hsmoon121/amortized-inference-hci/blob/main/plots) directory.
+- Code for inference model
+  - The code for training the inference model is available in this repository.
+- Code for simulator model
+  - We are currently refactoring the code for the simulator model. The refactored code will be available soon.
+- Tutorials
+  - We are also working on adding more tutorial code to help users understand and utilize our models and datasets.
 
-## Acknowledgement
+## Acknowledgements
 
 The biomechanical agent training part of this code utilizes the previous code from Ikkala et al. (UIST'22: 
 Breathing Life Into Biomechanical User Models). 
 
 For more details and citation, please refer to the respective repository: https://github.com/aikkala/user-in-the-box
-
 
 ## Citation
 

@@ -1,0 +1,75 @@
+simulator_name: raycasting_eval
+model_name: click_dense
+
+simulation:
+  bm_model:
+    cls: JointMoblArmsRay
+    kwargs:
+      shoulder_variant: none
+      sigdep_noise_type: white
+      constant_noise_type: white
+      with_user_params: True
+      effort_model:
+        cls: Zero
+        kwargs:
+          weight: 1e-3
+  task:
+    cls: RaycastingEval
+    kwargs:
+      fix_shoulder: False
+      origin: [body, thorax]
+      ray_origin: [site, ray_origin]
+      ray_target: [site, ray_target]
+      max_trials: 30
+      with_distractors: True
+      with_perturbation: True
+      with_early_stop: False
+      level:
+      - 1
+      - 2
+  perception_modules:
+  - cls: vision.FixedEye
+    kwargs:
+      resolution: [180, 120]
+      channels: [0, 2, 3]
+      pos: 0 0.2 0
+      quat: 0.707 0.0 -0.707 0.0
+      body: thorax
+  - cls: proprioception.BasicWithEndEffectorPosition
+    kwargs:
+      end_effector: [geom, hand_2distph]
+  run_parameters:
+    action_sample_freq: 20
+
+rl:
+  algorithm: PPO
+  policy_type: policies.MultiInputACPolicyTanhWithDiscriminator
+  policy_kwargs:
+    activation_fn: torch.nn.LeakyReLU
+    net_arch: [256, 256]
+    log_std_init: 0.0
+    features_extractor_class: feature_extractor.FeatureExtractor
+    normalize_images: False
+  lr:
+    function: schedule.linear_schedule
+    kwargs:
+      initial_value: 5e-5
+      min_value: 1e-7
+      threshold: 0.8
+  total_timesteps: 100_000_000
+  device: cuda
+  num_workers: 10
+  nsteps: 2000
+  batch_size: 500
+  gamma: 0.999
+  target_kl: 1.0
+  save_freq: 1_000_000
+  ent_coef: 0.005
+  beta_reward: 0.1
+  beta_loss: 1.0
+  use_sde: False
+  eval_path: ./simulators/raycasting_eval
+
+id: uitb:simulator-v100
+package_name: raycasting_eval
+gym_name: uitb:raycasting_eval-v0

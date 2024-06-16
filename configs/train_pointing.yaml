@@ -1,0 +1,85 @@
+simulator_name: raycasting
+model_name: pointing_dense
+
+simulation:
+  bm_model:
+    cls: JointMoblArmsRay
+    kwargs:
+      shoulder_variant: none
+      sigdep_noise_type: white
+      constant_noise_type: white
+      with_user_params: True
+      effort_model:
+        cls: Zero
+  task:
+    cls: Pointing
+    kwargs:
+      fix_shoulder: False
+      origin: [body, thorax]
+      ray_origin: [site, ray_origin]
+      ray_target: [site, ray_target]
+      max_trials: 1
+      linear_curriculum: True
+      with_distractors: True
+      with_perturbation: True
+      with_early_stop: True
+      level:
+      - 1
+      - 2
+  perception_modules:
+  - cls: vision.FixedEye
+    kwargs:
+      resolution: [180, 120]
+      channels: [0, 2, 3]
+      pos: 0 0.2 0
+      quat: 0.707 0.0 -0.707 0.0
+      body: thorax
+  - cls: proprioception.BasicWithEndEffectorPosition
+    kwargs:
+      end_effector: [geom, hand_2distph]
+  run_parameters:
+    action_sample_freq: 20
+    callbacks:
+    - name: linear_curriculum
+      cls: rl.sb3.callbacks.LinearCurriculum
+      kwargs:
+        start_value: 0.0
+        end_value: 1.0
+        start_timestep: 50_000_000
+        end_timestep: 350_000_000
+
+rl:
+  algorithm: PPO
+  # Two options for policy_type:
+  # 1) with DIAYN loss for encouraing exploration: policies.MultiInputACPolicyTanhWithDiscriminator 
+  # 2) wihtout DIAYN loss: policies.MultiInputActorCriticPolicyTanhActions
+  policy_type: policies.MultiInputACPolicyTanhWithDiscriminator
+  policy_kwargs:
+    activation_fn: torch.nn.LeakyReLU
+    net_arch: [256, 256]
+    log_std_init: 0.0
+    features_extractor_class: feature_extractor.FeatureExtractor
+    normalize_images: False
+  lr:
+    function: schedule.linear_schedule
+    kwargs:
+      initial_value: 5e-5
+      min_value: 1e-7
+      threshold: 0.5
+  total_timesteps: 500_000_000
+  device: cuda
+  num_workers: 20
+  nsteps: 2000
+  batch_size: 500
+  gamma: 0.999
+  target_kl: 1.0
+  save_freq: 1_000_000
+  ent_coef: 0.005
+  beta_reward: 0.0
+  beta_loss: 0.0
+  use_sde: False
+  eval_path: ./simulators/raycasting_eval
+
+id: uitb:simulator-v100
+package_name: raycasting
+gym_name: uitb:raycasting-v0
