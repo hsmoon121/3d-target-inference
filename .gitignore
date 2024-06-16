@@ -5,3 +5,4 @@ results/
 simulators/
 sim.yaml
 *.pkl
+___*
